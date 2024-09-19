@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Eliminar Producto</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Eliminar Producto</h1>
+    
+    <p>¿Estás seguro de que deseas eliminar el producto <strong th:text="${producto.nombre}"></strong>?</p>
+    
+    <form action="#" th:action="@{/producto/eliminar/{id}(id=${producto.id})}" method="post">
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="/producto/listar" class="btn btn-secondary">Cancelar</a>
+    </form>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agregar Producto</title>
+   <!-- Bootstrap CSS -->
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Agregar Producto</h1>
+    <form action="#" th:action="@{/producto/inserir}" th:object="${producto}" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" th:field="*{nombre}" />
+        <br>
+        <label for="precio">Precio:</label>
+        <input type="text" id="precio" th:field="*{precio}" />
+        <br>
+        
+        
+
+        <label for="categoria">Categoría:</label>
+    <select id="idCategoria" name="id_categoria" required >
+        <option th:each="categoria : ${categorias}"
+                th:value="${categoria.id}"
+                th:text="${categoria.descripcion}">Seleccionar categoría</option>
+    </select>
+        <br>
+        <button type="submit" class="btn btn-primary mb-3" >Guardar</button>
+    </form>
+    <a href="/producto/listar" class="btn btn-primary mb-3">Volver</a>
+
+     <!-- Bootstrap JS and dependencies -->
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
