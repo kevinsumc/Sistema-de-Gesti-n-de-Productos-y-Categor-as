@@ -7,12 +7,16 @@
 </head>
 <body>
     <h1>Agregar Producto</h1>
-    <form action="#" th:action="@{/producto/inserir}" th:object="${producto}" method="post">
+    <form action="#" th:action="@{/producto/inserir}" 
+    th:object="${producto}" method="post" enctype="multipart/form-data">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" th:field="*{nombre}" />
         <br>
         <label for="precio">Precio:</label>
         <input type="text" id="precio" th:field="*{precio}" />
+        <br>
+        <label for="imagen">Imagen:</label>
+        <input type="file" id="imagen" name="file"/>
         <br>
         
         

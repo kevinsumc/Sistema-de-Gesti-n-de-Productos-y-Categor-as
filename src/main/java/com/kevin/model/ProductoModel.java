@@ -28,20 +28,27 @@ public class ProductoModel {
     @JoinColumn(name = "id_categoria")  // Relación con la tabla de categorías
     private CategoriaModel categoria;
 
+    @Column(name = "imagen")  // Añadir nombre a la columna si es necesario
+    private String imagen;
+
     // Constructor vacío
-    public ProductoModel() {
+    public ProductoModel() { 
     }
 
     // Constructor con parámetros
-    public ProductoModel(String nombre, String precio, CategoriaModel categoria) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.categoria = categoria;
-    }
+   
 
     // Getters y Setters
     public Long getId() {
         return id;
+    }
+
+    public ProductoModel(Long id, String nombre, String precio, CategoriaModel categoria, String imagen) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.categoria = categoria;
+        this.imagen = imagen;
     }
 
     public void setId(Long id) {
@@ -71,4 +78,14 @@ public class ProductoModel {
     public void setCategoria(CategoriaModel categoria) {
         this.categoria = categoria;
     }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    
 }

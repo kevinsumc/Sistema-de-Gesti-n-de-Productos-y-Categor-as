@@ -51,6 +51,7 @@ public class ProductoDto {
     public void setId_categoria(int id_categoria) {
         this.id_categoria = id_categoria;
     }
+    
 
    
 }

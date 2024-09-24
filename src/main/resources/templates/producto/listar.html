@@ -23,6 +23,7 @@
                     <th>Nombre</th>
                     <th>Precio</th>
                     <th>Categoría</th>
+                    <th>Imagen</th> 
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -32,6 +33,11 @@
                     <td th:text="${producto.nombre}"></td>
                     <td th:text="${producto.precio}"></td>
                     <td th:text="${producto.categoria.descripcion}"></td>
+                    <td>
+                        <img th:src="@{/img/{nombreImagen}(nombreImagen=${producto.imagen})}" alt="Imagen del producto"
+                        style="width: 200px; height: 150px;">
+
+                    </td>
                     <td>
                         <a th:href="@{/producto/editar/{id}(id=${producto.id})}" class="btn btn-warning btn-sm">Editar</a>
                         <a th:href="@{/producto/eliminar/{id}(id=${producto.id})}" class="btn btn-danger btn-sm"

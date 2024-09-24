@@ -6,11 +6,18 @@ import com.kevin.repository.ProductoRepository;
 import com.kevin.repository.CategoriaRepository;
 
 import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.data.jpa.domain.JpaSort.Path;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.spring6.expression.Fields;
 
 @Controller
 @RequestMapping("/producto")
@@ -40,14 +47,30 @@ public class ProductoController {
 
     // Procesar el formulario para agregar un nuevo producto
 @PostMapping("/inserir")
-public String crear(@ModelAttribute ProductoModel producto, @RequestParam("id_categoria") Long idCategoria) {
+public String crear(@ModelAttribute ProductoModel producto,
+@RequestParam("file") MultipartFile imagen,
+ @RequestParam("id_categoria") Long idCategoria) {
     // Buscar la categoría por su id
     CategoriaModel categoria = categoriaRepository.findById(idCategoria)
         .orElseThrow(() -> new IllegalArgumentException("Invalid category Id:" + idCategoria));
-
     // Asignar la categoría al producto
     producto.setCategoria(categoria);
 
+    
+
+    try {
+        if (!imagen.isEmpty()) {
+            byte[] bytes = imagen.getBytes();
+            Path camino = Paths.get(
+                "src/main/resources/static/img/"+imagen.getOriginalFilename());
+            Files.write(camino, bytes);
+            producto.setImagen(imagen.getOriginalFilename());
+            
+        }
+    } catch (Exception e) {
+        // TODO: handle exception
+        System.out.println("Error Imagen");
+    }
     // Guardar el producto en la base de datos
     productoRepository.save(producto);
 
